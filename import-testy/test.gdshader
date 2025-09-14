@@ -1,13 +1,12 @@
 shader_type canvas_item;
 
-void vertex() {
-	// Called for every vertex the material is visible on.
-}
+uniform sampler2D lut: source_color;
+
 
 void fragment() {
 	vec2 uv = UV - 0.5;
 	float dist = dot(uv,uv);
-	COLOR = vec4(cos(uv.x + TIME), 1.0, 1.0, 1.0);
+	COLOR.rgb = texture(lut, vec2(sin(dist * 2.0 - TIME),0.0)).rgb;
 }
 
 //void light() {
